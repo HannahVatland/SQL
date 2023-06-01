@@ -1,0 +1,40 @@
+/*** Comics List
+Batman (1) (2.99) (30) (4)
+Nightwing (2) (3.99) (40) (5)
+RedHood (3) (4.99) (25) (5)
+RedRobin (4) (5.99) (20) (5)
+Robin (5) (1.99) (30) (4)
+Raven (6) (3.99) (10) (4)
+Wondergirl (7) (2.99) (5) (5)
+Beastboy (8) (1.99) (3) (3)
+Wally (9) (2.99) (5) (2)
+Starfire (10) (3.99) (30) (5)
+Superman (11) (4.99) (50) (5)
+Superboy (12) (3.99) (20) (4)
+Flash (13) (2.99) (15) (2)
+Wonderwoman (14) (5.99) (45) (5)
+Alfred (15) (7.99) (70) (6)
+**/
+--Creating the Comic Shop Databse
+Create table ComicShop (id INTEGER PRIMARY KEY, title TEXT, price REAL, quantity INTEGER, rating INTEGER);
+insert into ComicShop values(1, "Batman", 2.99, 30,4);
+insert into ComicShop values(2, "Nightwing", 3.99, 40,5);
+insert into ComicShop values(3, "RedHood", 4.99, 25,5);
+insert into ComicShop values(4, "RedRobin", 5.99, 20,5);
+insert into ComicShop values(5, "Robin", 1.99, 30,4);
+insert into ComicShop values(6, "Raven", 3.99, 10, 4);
+insert into ComicShop values(7, "Wondergirl", 2.99, 5, 5);
+insert into ComicShop values(8, "Beastboy", 1.99, 3, 3);
+insert into ComicShop values(9, "Wally", 2.99, 5, 2);
+insert into ComicShop values(10, "Starfire", 3.99, 30, 5);
+insert into ComicShop values(11, "Superman", 4.99, 50, 5);
+insert into ComicShop values(12, "Superboy", 3.99, 20, 4);
+insert into ComicShop values(13, "Flash", 2.99, 15,2);
+insert into ComicShop values(14, "Wonderwoman", 5.99, 45, 5);
+insert into ComicShop values(15, "Alfred", 7.99, 70, 6);
+
+--Order the Comics by Price starting lowest to highest
+select * from ComicShop order by price;
+
+--Finding the total number of comics the store currently holds
+select SUM(quantity) from ComicShop;
