@@ -1,0 +1,58 @@
+#I downloaded the Spoitfy data from Kaggle for this project, created a table to insert the Spotify data into, and then analyzed the data with SQL. 
+
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+song_key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+song_mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness decimal(8,7) NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL )
+
+
+##1. What was the longest song on the list along with list the artist and track name?
+select distinct artist_name, track_name ,max(duration_ms)
+from BIT_DB.Spotifydata
+
+##2. Which artist(s) has the most popular song, and what is the track name(s)?
+select artist_name, track_name, popularity
+from BIT_DB.Spotifydata
+where popularity = (select max(popularity) from BIT_DB.Spotifydata)
+
+##3. How many times does each artist appear on the list?
+select artist_name, count(artist_name) as 'artist_appearance'
+from BIT_DB.Spotifydata
+group by artist_name
+order by 'artist_appearance' 
+
+##4. What is the average duration, tempo, and danceability of the songs
+select avg(tempo),
+avg(danceability),
+avg(duration_ms)
+from BIT_DB.Spotifyddata
+
+##5. Which artists have an average popularity above 90 and what is their average popularity?
+with popularity_average_CTE as (
+select s.artist_name,
+AVG(s.popularity) AS average_popularity
+from SpotifyData s
+group by s.artist_name
+)
+
+Select  artist_name,
+        average_popularity,
+        'Top Star' as tag
+from popularity_average_CTE
+where average_popularity>=90;
+
